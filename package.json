@@ -2,14 +2,20 @@
   "name": "redditjs",
   "version": "1.0.0",
   "main": "index.js",
+  "private": true,
   "author": "Pacharapol Withayasakpunt <patarapolw@gmail.com> (https://polvcode.dev)",
   "license": "MIT",
   "dependencies": {
+    "@types/cheerio": "^0.22.16",
     "@types/js-yaml": "^3.12.2",
     "@types/puppeteer": "^2.0.0",
+    "@types/runes": "^0.4.1",
     "axios": "^0.19.2",
+    "cheerio": "^1.0.0-rc.3",
+    "escape-string-regexp": "^2.0.0",
     "js-yaml": "^3.13.1",
-    "puppeteer": "^2.1.1"
+    "puppeteer": "^2.1.1",
+    "runes": "^0.4.3"
   },
   "devDependencies": {
     "@types/node": "^13.7.0",

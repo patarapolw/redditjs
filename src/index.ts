@@ -17,15 +17,30 @@ import { api, setAuth } from './utils'
         after
       }
     })
-    new DeepFind(r.data).findKey('selftext_html').map((kv) => {
-      if (kv.selftext_html) {
-        console.log(kv)
-        output[kv.name] = output[kv.selftext_html]
-      }
-    })
 
-    after = r.data.after
+    after = r.data.data.after
+
+    await Promise.all(new DeepFind(r.data).findKey('name').map(async (kv) => {
+      try {
+        if (kv.name.startsWith('t3_')) {
+          let r1 = await api.get(`/comments/${kv.name.substr(3)}`, {
+            params: {
+              limit: '100'
+            }
+          })
+
+          for (const kv1 of new DeepFind(r1.data).findKey('body_html')) {
+            if (kv1.body_html) {
+              console.log(kv1.name)
+              output[kv1.name] = kv1.body_html
+            }
+          }
+        }
+      } catch (e) {
+        console.error(e)
+      }
+    }))
   }
 
-  fs.writeFileSync('output.yaml', yaml.safeDump(output))
+  fs.writeFileSync('output.yaml', yaml.safeDump(output, { skipInvalid: true }))
 })().catch(console.error)
