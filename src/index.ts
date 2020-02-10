@@ -10,7 +10,7 @@ import { api, setAuth } from './utils'
   let after: string | undefined
   const output = {} as any
 
-  for (const _ of Array.from({ length: 10 })) {
+  for (const _ of Array.from({ length: 50 })) {
     let r = await api.get('/top', {
       params: {
         limit: '100',
