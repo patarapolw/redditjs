@@ -12,6 +12,7 @@ import lunr from 'lunr'
     this.ref('$loki')
     this.field('symbol', { boost: 10 })
     this.field('codePoint')
+    this.field('frequency')
     this.field('description', { boost: 5 })
     this.field('hint', { boost: 5 })
     this.field('alt', { boost: 5 })
@@ -22,7 +23,7 @@ import lunr from 'lunr'
     })
   })
 
-  fs.writeFileSync('emoji.idx', JSON.stringify(idx))
+  // fs.writeFileSync('emoji.idx', JSON.stringify(idx))
 
   console.dir(idx.search('*fun*'), { depth: null })
 
